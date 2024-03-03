@@ -157,6 +157,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MapTile.cpp" />
+    <ClCompile Include="MapTile2.cpp" />
+    <ClCompile Include="MapTilePair.cpp" />
+    <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Tile.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MapTile.hpp" />
+    <ClInclude Include="MapTile2.hpp" />
+    <ClInclude Include="MapTilePair.hpp" />
+    <ClInclude Include="Math.hpp" />
+    <ClInclude Include="Tile.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
