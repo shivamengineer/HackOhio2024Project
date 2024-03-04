@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Draw.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="MapTile2.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Draw.hpp" />
     <ClInclude Include="MapTile.hpp" />
     <ClInclude Include="MapTile2.hpp" />
     <ClInclude Include="MapTilePair.hpp" />

@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 #include <SDL_ttf.h>
 #include "MapTile.hpp"
+#include "Draw.hpp"
 
 int main(int argc, char *argv[]) {
 	SDL_Init(SDL_INIT_VIDEO);
@@ -12,8 +13,11 @@ int main(int argc, char *argv[]) {
 	SDL_CreateWindowAndRenderer(1000, 480, 0, &window, &renderer);
 
 	SDL_Rect background{0, 0, 1000, 480};
-	SDL_Rect rect1 = {100, 100, 100, 100};
-	SDL_Rect rect2 = {100, 300, 100, 100};
+
+	Draw temp = Draw();
+	int pos[3] = { 0, 0, 0 };
+
+	SDL_Rect rect1 = {100, 100, 50, 50};
 
 	bool running = true;
 	SDL_Event e;
@@ -29,8 +33,7 @@ int main(int argc, char *argv[]) {
 		SDL_RenderFillRect(renderer, &background);
 
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-		SDL_RenderDrawRect(renderer, &rect1);
-		SDL_RenderDrawRect(renderer, &rect2);
+		temp.drawCube(renderer, pos, false, false);
 
 		SDL_RenderPresent(renderer);
 	}
