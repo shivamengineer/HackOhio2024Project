@@ -39,14 +39,15 @@ int main(int argc, char *argv[]) {
 
 		SDL_RenderClear(renderer);
 
-		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &background);
 
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-		temp.drawCube(renderer, slope, lengthCube, 2, 0);
-		temp.drawCube(renderer, slope, lengthCube, 0, 0);
-		temp.drawCube(renderer, slope, lengthCube, 1, 1);
-		temp.drawCube(renderer, slope, lengthCube, 1, -1);
+		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+		temp.drawCube(renderer, slope, lengthCube, 0, 0, 0);
+		temp.drawCube(renderer, slope, lengthCube, 0, 0, 1);
+		temp.drawCube(renderer, slope, lengthCube, 1, 0, 0);
+		temp.drawCube(renderer, slope, lengthCube, 0, 1, 0);
+		temp.drawCube(renderer, slope, lengthCube, -1, 1, 0);
 
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
