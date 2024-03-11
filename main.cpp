@@ -27,6 +27,32 @@ int main(int argc, char *argv[]) {
 	int posX2, posY2;
 
 	SDL_Rect rect1 = {100, 100, 50, 50};
+	int* attribs;
+	attribs = (int*)calloc(2, sizeof(int));
+	if (attribs != NULL) {
+		*attribs = slope;
+		*(attribs + 1) = lengthCube;
+	}
+	
+	int* pos = (int*)calloc(3, sizeof(int));
+	if (pos != NULL) {
+		*pos = 0;
+		*(pos + 1) = 0;
+		*(pos + 2) = 0;
+	}
+
+	bool* adjacent = (bool*)calloc(3, sizeof(bool));
+	if (adjacent != NULL) {
+		*adjacent = true;
+		*(adjacent + 1) = false;
+		*(adjacent + 2) = false;
+	}
+
+	int pos1[3] = { 0, 0, 0 };
+	int pos2[3] = { 0, 0, 1 };
+	int pos3[3] = { 1, 0, 0 };
+	int pos4[3] = { 0, 1, 0 };
+	int pos5[3] = { -1, 1, 0 };
 
 	bool running = true;
 	SDL_Event e;
@@ -43,16 +69,20 @@ int main(int argc, char *argv[]) {
 		SDL_RenderFillRect(renderer, &background);
 
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-		temp.drawCube(renderer, slope, lengthCube, 0, 0, 0);
-		temp.drawCube(renderer, slope, lengthCube, 0, 0, 1);
-		temp.drawCube(renderer, slope, lengthCube, 1, 0, 0);
-		temp.drawCube(renderer, slope, lengthCube, 0, 1, 0);
-		temp.drawCube(renderer, slope, lengthCube, -1, 1, 0);
+
+		temp.drawCube(renderer, attribs, pos, adjacent);
+		/*temp.drawCube(renderer, attribs, pos2);
+		temp.drawCube(renderer, attribs, pos3);
+		temp.drawCube(renderer, attribs, pos4);
+		temp.drawCube(renderer, attribs, pos5);*/
 
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
 		SDL_RenderPresent(renderer);
 	}
+
+	free(attribs);
+	free(pos);
 
 	SDL_DestroyWindow(window);
 	SDL_Quit();

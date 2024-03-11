@@ -7,7 +7,8 @@ class Draw {
 
 	public:
 		Draw();
-		void drawCube(SDL_Renderer* renderer, int slope, int length, int xPos, int yPos, int zPos);
+		//renderer, slope, length, x, y, z
+		void drawCube(SDL_Renderer* renderer, int *attributes, int *pos, bool *adjacent);
 		~Draw();
 };
 
