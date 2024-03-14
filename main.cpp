@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[]) {
 	SDL_Init(SDL_INIT_VIDEO);
-
+	TTF_Init();
 	int WIDTH = 1000, HEIGHT = 480;
 
 	SDL_Window *window;
@@ -15,6 +15,11 @@ int main(int argc, char *argv[]) {
 	SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer);
 
 	SDL_Rect background{0, 0, WIDTH, HEIGHT};
+	TTF_Font* roboto = TTF_OpenFont("roboto/Roboto-Bold.ttf", 24);
+
+	SDL_Color white = { 225, 225, 225 };
+	SDL_Surface* surface = TTF_RenderText_Solid(roboto, "Hello World!", white);
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
 
 	Draw temp = Draw();
 
@@ -68,6 +73,8 @@ int main(int argc, char *argv[]) {
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &background);
 
+		SDL_RenderCopy(renderer, texture, NULL, &rect1);
+
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
 		temp.drawCube(renderer, attribs, pos, adjacent);
@@ -83,7 +90,10 @@ int main(int argc, char *argv[]) {
 
 	free(attribs);
 	free(pos);
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(texture);
 
+	TTF_Quit();
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 
