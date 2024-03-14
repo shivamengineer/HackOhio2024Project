@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 
 	bool* adjacent = (bool*)calloc(3, sizeof(bool));
 	if (adjacent != NULL) {
-		*adjacent = true;
+		*adjacent = false;
 		*(adjacent + 1) = false;
 		*(adjacent + 2) = false;
 	}
