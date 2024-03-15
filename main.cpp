@@ -5,8 +5,9 @@
 #include "Draw.hpp"
 
 int main(int argc, char *argv[]) {
-	SDL_Init(SDL_INIT_VIDEO);
+	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
+
 	int WIDTH = 1000, HEIGHT = 480;
 
 	SDL_Window *window;
@@ -14,11 +15,12 @@ int main(int argc, char *argv[]) {
 
 	SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer);
 
-	SDL_Rect background{0, 0, WIDTH, HEIGHT};
-	TTF_Font* roboto = TTF_OpenFont("roboto/Roboto-Bold.ttf", 24);
+	TTF_Font* roboto = TTF_OpenFont("include/roboto/Roboto-Bold.ttf", 30);
+	if (roboto == NULL) {
+		printf("NULL error");
+	}
 
-	SDL_Color white = { 225, 225, 225 };
-	SDL_Surface* surface = TTF_RenderText_Solid(roboto, "Hello World!", white);
+	SDL_Surface* surface = TTF_RenderText_Solid(roboto, "Hello World!", {255, 255, 255});
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
 
 	Draw temp = Draw();
@@ -31,7 +33,9 @@ int main(int argc, char *argv[]) {
 
 	int posX2, posY2;
 
-	SDL_Rect rect1 = {100, 100, 50, 50};
+	SDL_Rect rect1;
+	rect1.x = 20; rect1.y = 20; rect1.w = 300; rect1.h = 50;
+
 	int* attribs;
 	attribs = (int*)calloc(2, sizeof(int));
 	if (attribs != NULL) {
@@ -68,14 +72,12 @@ int main(int argc, char *argv[]) {
 			running = false;
 		}
 
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-		SDL_RenderFillRect(renderer, &background);
+		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
 		SDL_RenderCopy(renderer, texture, NULL, &rect1);
-
-		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
 		temp.drawCube(renderer, attribs, pos, adjacent);
 		/*temp.drawCube(renderer, attribs, pos2);
