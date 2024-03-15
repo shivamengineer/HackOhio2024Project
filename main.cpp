@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
 
 	SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer);
 
-	TTF_Font* roboto = TTF_OpenFont("include/roboto/Roboto-Bold.ttf", 30);
+	TTF_Font* roboto = TTF_OpenFont("include/roboto/Roboto-Medium.ttf", 30);
 	if (roboto == NULL) {
 		printf("NULL error");
 	}
@@ -33,8 +33,7 @@ int main(int argc, char *argv[]) {
 
 	int posX2, posY2;
 
-	SDL_Rect rect1;
-	rect1.x = 20; rect1.y = 20; rect1.w = 300; rect1.h = 50;
+	SDL_Rect rect1 = { 20, 20, 200, 30 };
 
 	int* attribs;
 	attribs = (int*)calloc(2, sizeof(int));
@@ -84,8 +83,6 @@ int main(int argc, char *argv[]) {
 		temp.drawCube(renderer, attribs, pos3);
 		temp.drawCube(renderer, attribs, pos4);
 		temp.drawCube(renderer, attribs, pos5);*/
-
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
 		SDL_RenderPresent(renderer);
 	}
