@@ -4,10 +4,8 @@
 
 typedef struct Node{
 	MapTilePair pair;
-	struct Node* nXZY;
-	struct Node* pXZY;
-	struct Node* nZXY;
-	struct Node* pZXY;
+	struct Node* next;
+	struct Node* previous;
 } Node;
 
 class LinkedList {
@@ -24,6 +22,7 @@ class LinkedList {
 		MapTilePair getPair(int coords[2]);
 		void replace(int coords[2], Tile tile);
 		void advance();
+		void reverse();
 		~LinkedList();
 };
 
