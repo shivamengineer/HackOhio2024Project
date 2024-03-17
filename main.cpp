@@ -63,12 +63,20 @@ int main(int argc, char *argv[]) {
 	int pos5[3] = { -1, 1, 0 };
 
 	bool running = true;
-	SDL_Event e;
+	SDL_Event event;
 
 	while (running) {
-		SDL_PollEvent(&e);
-		if (e.type == SDL_QUIT) {
-			running = false;
+		if (SDL_PollEvent(&event)) {
+			if (event.type == SDL_QUIT) {
+				running = false;
+			}
+			if (event.type = SDL_KEYDOWN) {
+				switch (event.key.keysym.sym) {
+				case SDLK_ESCAPE:
+					running = false;
+					break;
+				}
+			}
 		}
 
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
