@@ -13,6 +13,9 @@ int main(int argc, char *argv[]) {
 
 	SDL_Window *window;
 	SDL_Renderer *renderer;
+	SDL_DisplayMode dm;
+
+	bool fullscreen = false;
 
 	SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer);
 
@@ -66,8 +69,15 @@ int main(int argc, char *argv[]) {
 	int pos4[3] = { 0, 1, 0 };
 	int pos5[3] = { -1, 1, 0 };*/
 
+	if (SDL_GetDesktopDisplayMode(0, &dm)) {
+		printf("Error getting display mode\n");
+		return -1;
+	}
+
 	bool running = true;
 	SDL_Event event;
+
+	SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 
 	while (running) {
 		if (SDL_PollEvent(&event)) {
@@ -78,6 +88,19 @@ int main(int argc, char *argv[]) {
 				switch (event.key.keysym.sym) {
 				case SDLK_ESCAPE:
 					running = false;
+					break;
+				case SDLK_f:
+					if (!fullscreen) {
+						SDL_RestoreWindow(window);
+						SDL_SetWindowSize(window, dm.w, dm.h + 10);
+						SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+						fullscreen = true;
+					} else {
+						SDL_RestoreWindow(window);
+						SDL_SetWindowSize(window, WIDTH, HEIGHT);
+						SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+						fullscreen = false;
+					}
 					break;
 				}
 			}
