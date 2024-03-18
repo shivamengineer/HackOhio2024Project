@@ -22,6 +22,7 @@ void Draw::drawCube(SDL_Renderer* renderer, int *attributes, int *pos, bool *adj
 	float fslope = (float)slope;
 	float flength = (float)length;
 	if (!(*adjacent)) {
+		//draw face
 		std::vector<SDL_Vertex> vertex1 = {
 			{ SDL_FPoint{fx, fy + fslope}, SDL_Color{ 50, 50, 50, 255 }, SDL_FPoint{ 0 }, },
 			{ SDL_FPoint{fx, fy + fslope + flength }, SDL_Color{ 255, 255, 255, 255 }, SDL_FPoint{ 0 }, },
@@ -34,8 +35,12 @@ void Draw::drawCube(SDL_Renderer* renderer, int *attributes, int *pos, bool *adj
 		};
 		SDL_RenderGeometry(renderer, nullptr, vertex1.data(), vertex1.size(), nullptr, 0);
 		SDL_RenderGeometry(renderer, nullptr, vertex2.data(), vertex2.size(), nullptr, 0);
+		//draw edges
+		SDL_RenderDrawLine(renderer, x, y + length + slope, x + length, y + length);
+		SDL_RenderDrawLine(renderer, x + length, y, x + length, y + length);
 	}
 	if (!(*(adjacent + 1))) {
+		//draw face
 		std::vector<SDL_Vertex> vertex1 = {
 			{ SDL_FPoint{fx, fy + fslope}, SDL_Color{ 50, 50, 50, 255 }, SDL_FPoint{ 0 }, },
 			{ SDL_FPoint{fx, fy - fslope }, SDL_Color{ 255, 255, 255, 255 }, SDL_FPoint{ 0 }, },
@@ -48,8 +53,13 @@ void Draw::drawCube(SDL_Renderer* renderer, int *attributes, int *pos, bool *adj
 		};
 		SDL_RenderGeometry(renderer, nullptr, vertex1.data(), vertex1.size(), nullptr, 0);
 		SDL_RenderGeometry(renderer, nullptr, vertex2.data(), vertex2.size(), nullptr, 0);
+		//draw edges
+		SDL_RenderDrawLine(renderer, x - length, y, x, y - slope);
+		SDL_RenderDrawLine(renderer, x + length, y, x, y - slope);
+		
 	}
 	if (!(*(adjacent + 2))) {
+		//draw face
 		std::vector<SDL_Vertex> vertex1 = {
 			{ SDL_FPoint{fx, fy + fslope}, SDL_Color{ 50, 50, 50, 255 }, SDL_FPoint{ 0 }, },
 			{ SDL_FPoint{fx, fy + flength + fslope }, SDL_Color{ 255, 255, 255, 255 }, SDL_FPoint{ 0 }, },
@@ -62,22 +72,14 @@ void Draw::drawCube(SDL_Renderer* renderer, int *attributes, int *pos, bool *adj
 		};
 		SDL_RenderGeometry(renderer, nullptr, vertex1.data(), vertex1.size(), nullptr, 0);
 		SDL_RenderGeometry(renderer, nullptr, vertex2.data(), vertex1.size(), nullptr, 0);
-	}
-	SDL_RenderDrawLine(renderer, x, y + slope, x, y + length + slope);
-	SDL_RenderDrawLine(renderer, x, y + slope, x + length, y);
-	SDL_RenderDrawLine(renderer, x, y + slope, x - length, y);
-	if (!(*adjacent)) {
-		SDL_RenderDrawLine(renderer, x, y + length + slope, x + length, y + length);
-		SDL_RenderDrawLine(renderer, x + length, y, x + length, y + length);
-	}
-	if (!(*(adjacent + 2))) {
+		//draw edges
 		SDL_RenderDrawLine(renderer, x, y + length + slope, x - length, y + length);
 		SDL_RenderDrawLine(renderer, x - length, y, x - length, y + length);
 	}
-	if (!(*(adjacent + 1))) {
-		SDL_RenderDrawLine(renderer, x - length, y, x, y - slope);
-		SDL_RenderDrawLine(renderer, x + length, y, x, y - slope);
-	}
+	//draw front edges
+	SDL_RenderDrawLine(renderer, x, y + slope, x, y + length + slope);
+	SDL_RenderDrawLine(renderer, x, y + slope, x + length, y);
+	SDL_RenderDrawLine(renderer, x, y + slope, x - length, y);
 }
 
 Draw::~Draw() {

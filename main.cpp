@@ -3,6 +3,7 @@
 #include <SDL_ttf.h>
 #include "MapTile.hpp"
 #include "Draw.hpp"
+#include "Collide.hpp"
 
 int main(int argc, char *argv[]) {
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -24,6 +25,7 @@ int main(int argc, char *argv[]) {
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
 
 	Draw temp = Draw();
+	Collide collider = Collide();
 
 	int slope, lengthCube, posX, posY;
 	slope = 23;
@@ -55,12 +57,14 @@ int main(int argc, char *argv[]) {
 		*(adjacent + 1) = false;
 		*(adjacent + 2) = false;
 	}
+	int* mouseX = (int*)calloc(1, sizeof(int));
+	int* mouseY = (int*)calloc(1, sizeof(int));
 
-	int pos1[3] = { 0, 0, 0 };
+	/*int pos1[3] = {0, 0, 0};
 	int pos2[3] = { 0, 0, 1 };
 	int pos3[3] = { 1, 0, 0 };
 	int pos4[3] = { 0, 1, 0 };
-	int pos5[3] = { -1, 1, 0 };
+	int pos5[3] = { -1, 1, 0 };*/
 
 	bool running = true;
 	SDL_Event event;
@@ -76,6 +80,23 @@ int main(int argc, char *argv[]) {
 					running = false;
 					break;
 				}
+			}
+			if (event.type = SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
+				SDL_GetMouseState(mouseX, mouseY);
+				int* mouseCoords = (int*)calloc(2, sizeof(int));
+				if (mouseX != NULL && mouseCoords != NULL) {
+					*mouseCoords = *mouseX;
+				}
+				if (mouseY != NULL && mouseCoords != NULL) {
+					*(mouseCoords + 1) = *mouseY;
+				}
+				bool collides = collider.mouseObjectCollide(attribs, pos, mouseCoords, adjacent);
+				if (collides) {
+					printf("Collides\n");
+				} else {
+					printf("Does not collide\n");
+				}
+				free(mouseCoords);
 			}
 		}
 
@@ -95,6 +116,8 @@ int main(int argc, char *argv[]) {
 		SDL_RenderPresent(renderer);
 	}
 
+	free(mouseX);
+	free(mouseY);
 	free(attribs);
 	free(pos);
 	SDL_FreeSurface(surface);

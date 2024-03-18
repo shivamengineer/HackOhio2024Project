@@ -156,6 +156,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collide.cpp" />
+    <ClCompile Include="Collide.hpp" />
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="main.cpp" />

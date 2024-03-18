@@ -42,6 +42,12 @@
     <ClCompile Include="Node.hpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="Collide.hpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collide.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tile.hpp">
