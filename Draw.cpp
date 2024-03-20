@@ -24,6 +24,7 @@ void Draw::drawCube(SDL_Renderer* renderer, int *attributes, int *pos, bool *adj
 	float flength = (float)length;
 	if (!(*adjacent)) {
 		//draw face
+		SDL_SetRenderDrawColor(renderer, 255, 255, 255, opacity);
 		std::vector<SDL_Vertex> vertex1 = {
 			{ SDL_FPoint{fx, fy + fslope}, SDL_Color{ 50, 50, 50, opacity }, SDL_FPoint{ 0 }, },
 			{ SDL_FPoint{fx, fy + fslope + flength }, SDL_Color{ 255, 255, 255, opacity }, SDL_FPoint{ 0 }, },
