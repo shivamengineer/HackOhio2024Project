@@ -5,7 +5,6 @@
 typedef struct Node{
 	MapTilePair pair;
 	struct Node* next;
-	struct Node* previous;
 } Node;
 
 class LinkedList {
@@ -13,8 +12,8 @@ class LinkedList {
 		Node *preStart;
 		Node *postFinish;
 		Node* current;
-		int leftLength;
 		int rightLength;
+		int leftLength;
 	public:
 		LinkedList();
 		void insert(MapTilePair pair);
@@ -22,7 +21,6 @@ class LinkedList {
 		MapTilePair getPair(int coords[2]);
 		void replace(int coords[2], Tile tile);
 		void advance();
-		void reverse();
 		~LinkedList();
 };
 
