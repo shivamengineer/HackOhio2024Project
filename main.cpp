@@ -65,11 +65,25 @@ int main(int argc, char* argv[]) {
 		*(pos + 2) = 0;
 	}
 
+	int* pos2 = (int*)calloc(3, sizeof(int));
+	if (pos2 != NULL) {
+		*pos = 1;
+		*(pos + 1) = 0;
+		*(pos + 2) = 0;
+	}
+
 	bool* adjacent = (bool*)calloc(3, sizeof(bool));
 	if (adjacent != NULL) {
 		*adjacent = false;
 		*(adjacent + 1) = false;
 		*(adjacent + 2) = false;
+	}
+
+	bool* adjacent2 = (bool*)calloc(3, sizeof(bool));
+	if (adjacent2 != NULL) {
+		*adjacent2 = true;
+		*(adjacent2 + 1) = false;
+		*(adjacent2 + 2) = false;
 	}
 	int* mouseX = (int*)calloc(1, sizeof(int));
 	int* mouseY = (int*)calloc(1, sizeof(int));
@@ -174,6 +188,7 @@ int main(int argc, char* argv[]) {
 		SDL_RenderClear(renderer);
 
 		temp.drawCube(renderer, attribs, pos, adjacent);
+		temp.drawCube(renderer, attribs, pos2, adjacent2);
 
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
@@ -200,6 +215,9 @@ int main(int argc, char* argv[]) {
 	free(mouseY);
 	free(attribs);
 	free(pos);
+	free(pos2);
+	free(adjacent);
+	free(adjacent2);
 	SDL_FreeSurface(escSurface);
 	SDL_FreeSurface(resumeSurface);
 	SDL_FreeSurface(exitSurface);
