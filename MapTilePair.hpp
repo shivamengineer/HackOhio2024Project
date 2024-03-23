@@ -7,9 +7,7 @@ class MapTilePair {
 		int coords[2];
 		Tile tile;
 	public:
-		MapTilePair();
-
-		void newPair(int coords[2], Tile tile);
+		MapTilePair(int coords[2], Tile tile);
 		int* getCoords();
 		Tile getTile();
 		void changeTile(Tile tile);

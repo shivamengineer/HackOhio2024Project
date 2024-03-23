@@ -1,19 +1,21 @@
-#ifndef MAPTILE2_H
-#define MAPTILE2_H
+#ifndef MAPTILE1_H
+#define MAPTILE1_H
 #include "Tile.hpp"
 #include "MapTilePair.hpp"
+#include "LinkedList.hpp"
 
-class MapTile2 {
+class MapTile1 {
 private:
 	int numTiles;
-	std::queue<MapTilePair> tilePairs;
+	LinkedList* maps;
+	bool mapInit[5][5];
 public:
-	MapTile2();
+	MapTile1();
 	void addTile(int coords[2], Tile tile1);
 	Tile removeTile(int coords[2]);
 	bool hasTile(int coords[2]);
 	void replaceTile(int coords[2], Tile tile1);
-	~MapTile2();
+	~MapTile1();
 };
 
 #endif

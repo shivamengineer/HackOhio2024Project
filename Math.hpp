@@ -7,6 +7,7 @@ class Math {
 	public:
 		Math();
 		int* bucket(int coords[2]);
+		int* miniBucket(int coords[2]);
 		~Math();
 };
 
