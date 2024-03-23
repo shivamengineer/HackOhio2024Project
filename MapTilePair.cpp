@@ -1,4 +1,11 @@
 #include "MapTilePair.hpp"
+#include "Tile.hpp"
+
+MapTilePair::MapTilePair() {
+	this->coords[0] = 0;
+	this->coords[1] = 0;
+	this->tile = Tile();
+}
 
 MapTilePair::MapTilePair(int coords[2], Tile tile) {
 	this->coords[0] = coords[0];
