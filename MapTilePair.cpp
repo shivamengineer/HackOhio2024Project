@@ -47,10 +47,22 @@ bool* MapTilePair::getAdjacent() {
 	return this->adjacent;
 }
 
-void MapTilePair::changeAdjacent(bool newAdjacent[3]) {
-	*(adjacent) = newAdjacent[0];
-	*(adjacent + 1) = newAdjacent[1];
-	*(adjacent + 1) = newAdjacent[2];
+void MapTilePair::changeAdjacentX(bool adjacentX) {
+	*(this->adjacent) = adjacentX;
+}
+
+void MapTilePair::changeAdjacentY(bool adjacentY) {
+	*(this->adjacent + 1) = adjacentY;
+}
+
+void MapTilePair::changeAdjacentZ(bool adjacentZ) {
+	*(this->adjacent + 2) = adjacentZ;
+}
+
+void MapTilePair::changeAdjacent(bool adjacentX, bool adjacentY, bool adjacentZ) {
+	*(this->adjacent) = adjacentX;
+	*(this->adjacent + 1) = adjacentY;
+	*(this->adjacent + 1) = adjacentZ;
 }
 
 MapTilePair::~MapTilePair() {

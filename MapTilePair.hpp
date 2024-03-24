@@ -15,7 +15,10 @@ class MapTilePair {
 		Tile getTile();
 		void changeTile(Tile tile);
 		bool* getAdjacent();
-		void changeAdjacent(bool newAdjacent[3]);
+		void changeAdjacentX(bool adjacentX);
+		void changeAdjacentY(bool adjacentY);
+		void changeAdjacentZ(bool adjacentZ);
+		void changeAdjacent(bool adjacentX, bool adjacentY, bool adjacentZ);
 		~MapTilePair();
 };
 

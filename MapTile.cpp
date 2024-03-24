@@ -17,17 +17,36 @@ void MapTile::addPair(MapTilePair pair) {
 	Math math = Math();
 	int* coords = pair.getCoords();
 
+	bool pairAdjacent[3] = { false, false, false };
+
 	int* bucketX = (int*)calloc(2, sizeof(int));
-	int* coordsX = coords;
-	*coordsX -= 1;
+	int* tempCoords = coords;
+	*tempCoords -= 1;
+	bucketX = math.bucket(tempCoords);
+	if ((this->maps + *bucketX + (*(bucketX + 1) * 10))->hasTile(tempCoords)) {
+		MapTilePair temp = (this->maps + *bucketX + (*(bucketX + 1) * 10))->getPair(tempCoords);
+		temp.changeAdjacentX(true);
+	}
+	*tempCoords += 1;
 
 	int* bucketZ = (int*)calloc(2, sizeof(int));
-	int* coordsZ = coords;
+	*(tempCoords + 2) -= 1;
+	bucketZ = math.bucket(tempCoords);
+	if ((this->maps + *bucketZ + (*(bucketZ + 1) * 10))->hasTile(tempCoords)) {
+		MapTilePair temp = (this->maps + *bucketZ + (*(bucketZ + 1) * 10))->getPair(tempCoords);
+		temp.changeAdjacentZ(true);
+	}
+	*(tempCoords + 2) += 1;
 
 	int* bucket = (int*)calloc(2, sizeof(int));
 	bucket = math.bucket(coords);
 
-	int* coordsY = coords;
+	*(tempCoords + 1) -= 1;
+	if ((this->maps + *bucket + (*(bucket + 1) * 10))->hasTile(tempCoords)) {
+		MapTilePair temp = (this->maps + *bucket + (*(bucket + 1) * 10))->getPair(tempCoords);
+		temp.changeAdjacentY(true);
+	}
+	*(tempCoords + 1) += 1;
 	
 	if (mapInit[*bucket][*(bucket + 1)] == false) {
 		mapInit[*bucket][*(bucket + 1)] = true;
@@ -50,6 +69,34 @@ MapTilePair MapTile::removeTile(int coords[3]) {
 	int* bucket = (int*)calloc(2, sizeof(int));
 	bucket = math.bucket(coords);
 	MapTilePair pair = (this->maps + *bucket + (*(bucket + 1) * 10))->removeTile(coords);
+	int* bucketX = (int*)calloc(2, sizeof(int));
+	int* tempCoords = coords;
+	*tempCoords -= 1;
+	bucketX = math.bucket(tempCoords);
+	if ((this->maps + *bucketX + (*(bucketX + 1) * 10))->hasTile(tempCoords)) {
+		MapTilePair temp = (this->maps + *bucketX + (*(bucketX + 1) * 10))->getPair(tempCoords);
+		temp.changeAdjacentX(false);
+	}
+	*tempCoords += 1;
+
+	int* bucketZ = (int*)calloc(2, sizeof(int));
+	*(tempCoords + 2) -= 1;
+	bucketZ = math.bucket(tempCoords);
+	if ((this->maps + *bucketZ + (*(bucketZ + 1) * 10))->hasTile(tempCoords)) {
+		MapTilePair temp = (this->maps + *bucketZ + (*(bucketZ + 1) * 10))->getPair(tempCoords);
+		temp.changeAdjacentZ(false);
+	}
+	*(tempCoords + 2) += 1;
+
+	int* bucket = (int*)calloc(2, sizeof(int));
+	bucket = math.bucket(coords);
+
+	*(tempCoords + 1) -= 1;
+	if ((this->maps + *bucket + (*(bucket + 1) * 10))->hasTile(tempCoords)) {
+		MapTilePair temp = (this->maps + *bucket + (*(bucket + 1) * 10))->getPair(tempCoords);
+		temp.changeAdjacentY(false);
+	}
+	*(tempCoords + 1) += 1;
 	free(bucket);
 	return pair;
 }

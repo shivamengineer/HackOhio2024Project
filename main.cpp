@@ -67,9 +67,9 @@ int main(int argc, char* argv[]) {
 
 	int* pos2 = (int*)calloc(3, sizeof(int));
 	if (pos2 != NULL) {
-		*pos = 1;
+		*pos = 0;
 		*(pos + 1) = 0;
-		*(pos + 2) = 0;
+		*(pos + 2) = 1;
 	}
 
 	bool* adjacent = (bool*)calloc(3, sizeof(bool));
@@ -83,7 +83,7 @@ int main(int argc, char* argv[]) {
 	if (adjacent2 != NULL) {
 		*adjacent2 = false;
 		*(adjacent2 + 1) = false;
-		*(adjacent2 + 2) = false;
+		*(adjacent2 + 2) = true;
 	}
 	int* mouseX = (int*)calloc(1, sizeof(int));
 	int* mouseY = (int*)calloc(1, sizeof(int));
