@@ -14,7 +14,7 @@ LinkedList::LinkedList(){
 	this->current = &this->preStart;
 }
 
-void LinkedList::insert(MapTilePair pair){
+void LinkedList::insert(MapTilePair pair) {
 	void gotoStart();
 	this->rightLength += this->leftLength;
 	this->leftLength = 0;
@@ -78,7 +78,7 @@ bool LinkedList::hasPair(int coords[2]) {
 
 void LinkedList::replace(int coords[2], Tile tile){
 	bool replaced = false;
-	gotoStart();
+	gotoStart(); 
 	MapTilePair temp = MapTilePair(coords, tile);
 	while (!replaced && this->rightLength > 0) {
 		int* coords = this->current->next->pair.getCoords();

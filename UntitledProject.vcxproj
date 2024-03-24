@@ -156,22 +156,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MapTile1.cpp" />
+    <ClCompile Include="UpdateWorld.cpp" />
     <ClCompile Include="Collide.cpp" />
     <ClCompile Include="Collide.hpp" />
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapTile.cpp" />
-    <ClCompile Include="MapTile2.cpp" />
     <ClCompile Include="MapTilePair.cpp" />
     <ClCompile Include="Math.cpp" />
-    <ClCompile Include="Node.hpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MapTile1.hpp" />
+    <ClInclude Include="UpdateWorld.hpp" />
     <ClInclude Include="Draw.hpp" />
     <ClInclude Include="MapTile.hpp" />
-    <ClInclude Include="MapTile2.hpp" />
     <ClInclude Include="MapTilePair.hpp" />
     <ClInclude Include="Math.hpp" />
     <ClInclude Include="LinkedList.hpp" />

@@ -1,16 +1,17 @@
 #ifndef UPDATEWORLD_H
 #define UPDATEWORLD_H
-#include "MapTile2.hpp"
+#include "MapTile.hpp"
 #include "SDL2/SDL.h"
+#include "Draw.hpp"
 
 class UpdateWorld {
 private:
-	MapTile2 map;
+	MapTile map;
 	int* attribs;
 	SDL_Renderer* renderer;
 public:
-	UpdateWorld(SDL_Renderer* renderer, int* attribs);
-	
+	UpdateWorld(SDL_Renderer* renderer);
+	void updateAdjacent();
 	~UpdateWorld();
 };
 
