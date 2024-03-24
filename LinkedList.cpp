@@ -26,13 +26,13 @@ void LinkedList::insert(MapTilePair pair) {
 	this->rightLength++;
 }
 
-MapTilePair LinkedList::remove(int coords[2]) {
+MapTilePair LinkedList::remove(int coords[3]) {
 	bool removed = false;
 	gotoStart();
 	MapTilePair temp = MapTilePair(coords, Tile());
 	while (!removed && this->rightLength > 0) {
 		int* coords = this->current->next->pair.getCoords();
-		if (*coords == coords[0] && *(coords + 1) == coords[1]) {
+		if (*coords == coords[0] && *(coords + 1) == coords[1] && *(coords + 2) == coords[2]) {
 			temp = this->current->next->pair;
 			this->current->next = this->current->next->next;
 			this->rightLength--;
@@ -45,13 +45,13 @@ MapTilePair LinkedList::remove(int coords[2]) {
 	return temp;
 }
 
-MapTilePair LinkedList::getPair(int coords[2]) {
+MapTilePair LinkedList::getPair(int coords[3]) {
 	bool found = false;
 	gotoStart();
 	MapTilePair temp = MapTilePair(coords, Tile());
 	while (!found && this->rightLength > 0) {
 		int* coords = this->current->next->pair.getCoords();
-		if (*coords == coords[0] && *(coords + 1) == coords[1]) {
+		if (*coords == coords[0] && *(coords + 1) == coords[1] && *(coords + 2) == coords[2]) {
 			temp = this->current->next->pair;
 			found = true;
 		} else {
@@ -61,12 +61,12 @@ MapTilePair LinkedList::getPair(int coords[2]) {
 	return temp;
 }
 
-bool LinkedList::hasPair(int coords[2]) {
+bool LinkedList::hasPair(int coords[3]) {
 	bool found = false;
 	gotoStart();
 	while (!found && this->rightLength > 0) {
 		int* coords = this->current->next->pair.getCoords();
-		if (*coords == coords[0] && *(coords + 1) == coords[1]) {
+		if (*coords == coords[0] && *(coords + 1) == coords[1] && *(coords + 2) == coords[2]) {
 			found = true;
 		} else {
 			advance();
@@ -76,15 +76,14 @@ bool LinkedList::hasPair(int coords[2]) {
 	return false;
 }
 
-void LinkedList::replace(int coords[2], Tile tile){
+void LinkedList::replace(MapTilePair newPair){
 	bool replaced = false;
 	gotoStart(); 
-	MapTilePair temp = MapTilePair(coords, tile);
 	while (!replaced && this->rightLength > 0) {
 		int* coords = this->current->next->pair.getCoords();
-		if (*coords == coords[0] && *(coords + 1) == coords[1]) {
-			temp = this->current->next->pair;
-			this->current->next->pair = temp;
+		if (*coords == coords[0] && *(coords + 1) == coords[1] && *(coords + 2) == coords[2]) {
+			newPair = this->current->next->pair;
+			this->current->next->pair = newPair;
 			replaced = true;
 		}
 		else {

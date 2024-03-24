@@ -4,13 +4,13 @@
 
 class MapTilePair {
 	private:
-		int coords[2];
+		int coords[3];
 		Tile tile;
 		bool* adjacent;
 	public:
 		MapTilePair();
-		MapTilePair(int coords[2], Tile tile);
-		MapTilePair(int coords[2], Tile tile, bool* adjacent1);
+		MapTilePair(int coords[3], Tile tile);
+		MapTilePair(int coords[3], Tile tile, bool* adjacent1);
 		int* getCoords();
 		Tile getTile();
 		void changeTile(Tile tile);

@@ -13,35 +13,48 @@ MapTile::MapTile(){
 	this->maps = (MapTile1*)calloc(100, sizeof(MapTile1));
 }
 
-void MapTile::addTile(int coords[2], Tile tile1) {
+void MapTile::addPair(MapTilePair pair) {
 	Math math = Math();
+	int* coords = pair.getCoords();
+
+	int* bucketX = (int*)calloc(2, sizeof(int));
+	int* coordsX = coords;
+	*coordsX -= 1;
+
+	int* bucketZ = (int*)calloc(2, sizeof(int));
+	int* coordsZ = coords;
+
 	int* bucket = (int*)calloc(2, sizeof(int));
 	bucket = math.bucket(coords);
+
+	int* coordsY = coords;
+	
 	if (mapInit[*bucket][*(bucket + 1)] == false) {
 		mapInit[*bucket][*(bucket + 1)] = true;
 		*(this->maps + *bucket + (*(bucket + 1) * 10)) = MapTile1();
 	}
-	(this->maps + *bucket + (*(bucket + 1) * 10))->addTile(coords, tile1);
+	(this->maps + *bucket + (*(bucket + 1) * 10))->addTile(pair);
 	this->numTiles++;
 	free(bucket);
 }
 
-Tile MapTile::getTile(int coords[2]) {
-	Math math = Math();
-	int* bucket = (int*)calloc(2, sizeof(int));
-	return Tile();
-}
-
-Tile MapTile::removeTile(int coords[2]) {
+MapTilePair MapTile::getPair(int coords[3]) {
 	Math math = Math();
 	int* bucket = (int*)calloc(2, sizeof(int));
 	bucket = math.bucket(coords);
-	(this->maps + *bucket + (*(bucket + 1) * 10))->removeTile(coords);
-	free(bucket);
-	return Tile();
+	return (this->maps + *bucket + (*(bucket + 1) * 10))->getPair(coords);
 }
 
-bool MapTile::hasTile(int coords[2]) {
+MapTilePair MapTile::removeTile(int coords[3]) {
+	Math math = Math();
+	int* bucket = (int*)calloc(2, sizeof(int));
+	bucket = math.bucket(coords);
+	MapTilePair pair = (this->maps + *bucket + (*(bucket + 1) * 10))->removeTile(coords);
+	free(bucket);
+	return pair;
+}
+
+bool MapTile::hasTile(int coords[3]) {
 	bool hasTile = false;
 	Math math = Math();
 	int* bucket = (int*)calloc(2, sizeof(int));
@@ -53,11 +66,11 @@ bool MapTile::hasTile(int coords[2]) {
 	return hasTile;
 }
 
-void MapTile::replaceTile(int coords[2], Tile tile1) {
+void MapTile::replaceTile(MapTilePair newPair) {
 	Math math = Math();
 	int* bucket = (int*)calloc(2, sizeof(int));
-	bucket = math.bucket(coords);
-	(this->maps + *bucket + (*(bucket + 1) * 100))->replaceTile(coords, tile1);
+	bucket = math.bucket(newPair.getCoords());
+	(this->maps + *bucket + (*(bucket + 1) * 100))->replaceTile(newPair);
 	free(bucket);
 }
 

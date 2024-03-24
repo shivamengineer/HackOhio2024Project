@@ -11,7 +11,6 @@ private:
 	SDL_Renderer* renderer;
 public:
 	UpdateWorld(SDL_Renderer* renderer);
-	void updateAdjacent();
 	~UpdateWorld();
 };
 

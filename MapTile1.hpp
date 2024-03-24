@@ -11,10 +11,11 @@ private:
 	bool mapInit[5][5];
 public:
 	MapTile1();
-	void addTile(int coords[2], Tile tile1);
-	Tile removeTile(int coords[2]);
-	bool hasTile(int coords[2]);
-	void replaceTile(int coords[2], Tile tile1);
+	void addTile(MapTilePair pair);
+	MapTilePair removeTile(int coords[3]);
+	bool hasTile(int coords[3]);
+	MapTilePair getPair(int coords[3]);
+	void replaceTile(MapTilePair newPair);
 	~MapTile1();
 };
 

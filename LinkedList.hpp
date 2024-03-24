@@ -20,10 +20,10 @@ class LinkedList {
 	public:
 		LinkedList();
 		void insert(MapTilePair pair);
-		MapTilePair remove(int coords[2]);
-		MapTilePair getPair(int coords[2]);
-		bool hasPair(int coords[2]);
-		void replace(int coords[2], Tile tile);
+		MapTilePair remove(int coords[3]);
+		MapTilePair getPair(int coords[3]);
+		bool hasPair(int coords[3]);
+		void replace(MapTilePair newPair);
 		~LinkedList();
 };
 

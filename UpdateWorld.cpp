@@ -7,10 +7,6 @@ UpdateWorld::UpdateWorld(SDL_Renderer* renderer) {
 	this->map = MapTile();
 }
 
-void UpdateWorld::updateAdjacent() {
-
-}
-
 UpdateWorld::~UpdateWorld() {
 
 }
