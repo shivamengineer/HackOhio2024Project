@@ -2,6 +2,8 @@ Tile based game
 
 Made in C++ with SDL2
 
+However my knowledge of both of these is pretty bad
+
 Learning about 3D rendering
 Isometric view
 
