@@ -1,4 +1,4 @@
-Tile based game
+Tile map used for game
 
 Made in C++ with SDL2
 
