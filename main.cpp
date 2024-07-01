@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 	SDL_Renderer* renderer;
 	SDL_DisplayMode dm;
 
-	bool fullscreen = false, resume = false, exit = false;
+	bool fullscreen = false;
 
 	SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer);
 
@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 
 	SDL_Surface* escSurface = TTF_RenderText_Solid(roboto, "ESC", { 255, 255, 255 });
 	SDL_Texture* escTexture = SDL_CreateTextureFromSurface(renderer, escSurface);
-	SDL_Rect esc = { 50, 50, 100, 30 };
+	SDL_Rect esc = { 30, 30, 80, 30 };
 
 	if (SDL_GetDesktopDisplayMode(0, &dm)) {
 		printf("Error getting display mode\n");
@@ -61,6 +61,9 @@ int main(int argc, char* argv[]) {
 						SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 						fullscreen = false;
 					}
+					break;
+				case SDLK_ESCAPE:
+					running = false;
 					break;
 				}
 			}
