@@ -18,18 +18,30 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Collide.hpp">
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="Collide.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Hexagon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TileManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HexagonMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Tile.hpp">
+    <ClInclude Include="Hexagon.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TileManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HexagonMap.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

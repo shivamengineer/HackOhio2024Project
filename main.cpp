@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL_ttf.h>
+#include <vector>
+#include <queue>
 #include "Collide.hpp"
+#include "Hexagon.hpp"
 
 int main(int argc, char* argv[]) {
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -12,10 +15,24 @@ int main(int argc, char* argv[]) {
 	int opacityMenu = 0;
 	bool blur = false;
 	int keyCount = 0;
+	int camPos[2] = { 0, 0 };
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	SDL_DisplayMode dm;
+	
+	SDL_Color inColor = SDL_Color{0, 0, 0, 255};
+	SDL_Color outColor = SDL_Color{ 255, 255, 255, 255 };
+
+	std::queue<Hexagon> hexagons = std::queue<Hexagon>();
+	hexagons.push(Hexagon(250, 200, 50, inColor, outColor));
+	hexagons.push(Hexagon(400, 250, 50, inColor, outColor));
+	hexagons.push(Hexagon(400, 150, 50, inColor, outColor));
+	hexagons.push(Hexagon(550, 200, 50, inColor, outColor));
+	hexagons.push(Hexagon(550, 300, 50, inColor, outColor));
+	hexagons.push(Hexagon(550, 100, 50, inColor, outColor));
+	hexagons.push(Hexagon(250, 100, 50, inColor, outColor));
+	hexagons.push(Hexagon(250, 300, 50, inColor, outColor));
 
 	bool fullscreen = false;
 
@@ -65,6 +82,42 @@ int main(int argc, char* argv[]) {
 						fullscreen = false;
 					}
 					break;
+				case SDLK_RIGHT:
+					camPos[0] += 5;
+					for (int i = 0; i < hexagons.size(); i++) {
+						hexagons.front().Update(camPos[0], camPos[1], inColor, outColor);
+						Hexagon temp = hexagons.front();
+						hexagons.pop();
+						hexagons.push(temp);
+					}
+					break;
+				case SDLK_LEFT:
+					camPos[0] -= 5;
+					for (int i = 0; i < hexagons.size(); i++) {
+						hexagons.front().Update(camPos[0], camPos[1], inColor, outColor);
+						Hexagon temp = hexagons.front();
+						hexagons.pop();
+						hexagons.push(temp);
+					}
+					break;
+				case SDLK_UP:
+					camPos[1] -= 5;
+					for (int i = 0; i < hexagons.size(); i++) {
+						hexagons.front().Update(camPos[0], camPos[1], inColor, outColor);
+						Hexagon temp = hexagons.front();
+						hexagons.pop();
+						hexagons.push(temp);
+					}
+					break;
+				case SDLK_DOWN:
+					camPos[1] += 5;
+					for (int i = 0; i < hexagons.size(); i++) {
+						hexagons.front().Update(camPos[0], camPos[1], inColor, outColor);
+						Hexagon temp = hexagons.front();
+						hexagons.pop();
+						hexagons.push(temp);
+					}
+					break;
 				case SDLK_ESCAPE:
 					running = false;
 					break;
@@ -77,6 +130,13 @@ int main(int argc, char* argv[]) {
 
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 		SDL_RenderCopy(renderer, escTexture, NULL, &esc);
+
+		for (int i = 0; i < hexagons.size(); i++) {
+			hexagons.front().Draw(renderer);
+			Hexagon temp = hexagons.front();
+			hexagons.pop();
+			hexagons.push(temp);
+		}
 
 		SDL_RenderPresent(renderer);
 	}

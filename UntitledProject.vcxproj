@@ -158,11 +158,15 @@
   <ItemGroup>
     <ClCompile Include="Collide.cpp" />
     <ClCompile Include="Collide.hpp" />
+    <ClCompile Include="Hexagon.cpp" />
+    <ClCompile Include="HexagonMap.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Tile.hpp" />
+    <ClInclude Include="Hexagon.hpp" />
+    <ClInclude Include="HexagonMap.hpp" />
+    <ClInclude Include="TileManager.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
